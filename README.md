@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SaaS Cursos — OmniSys
 
-## Getting Started
+Plataforma SaaS para gestionar y consumir contenidos de cursos. Los administradores mantienen cursos, secciones y recursos en Markdown (con videos de YouTube, PDFs e imágenes); los estudiantes siguen la secuencia numerada de estudio y dejan feedback en cada recurso.
 
-First, run the development server:
+## Features
+
+- **Dos roles**: `admin` (CRUD completo y moderación) y `student` (consumo y feedback).
+- **Jerarquía de contenidos**: curso → secciones → recursos, con numeración secuencial visible (1, 1.1, 1.1.1) que permite intercalar elementos sin renumerar.
+- **Recursos en Markdown** con embebido automático de videos de YouTube (los enlaces de YouTube se convierten en iframes), tablas, código y más.
+- **Autenticación por magic link** (sin contraseñas), con emails capturados por MailHog en desarrollo.
+- **Feedback por recurso**: rating 1–5 y comentario, asociado al usuario.
+- **Landing profesional** con branding OmniSys (logo + QR en el header de todas las páginas).
+- **Seed de datos** con 3 cursos reales y videos de YouTube.
+- **Testing** unitario y de integración con Vitest (35 tests).
+
+## Stack
+
+- [Next.js 16](https://nextjs.org/) (App Router, TypeScript, Server Components y Server Actions)
+- [MongoDB](https://www.mongodb.com/) con driver nativo (sin ORM) — base `saas-cursos`
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [MailHog](https://github.com/mailhog/MailHog) para emails en desarrollo
+- [Vitest](https://vitest.dev/) para tests
+
+## Puesta en marcha
+
+Ver [QUICKSTART.md](QUICKSTART.md). Resumen:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run seed   # datos de ejemplo
+npm run dev    # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requiere MongoDB en `localhost:27017` y MailHog corriendo (`mailhog`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usuarios de prueba (seed)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Email | Rol |
+|---|---|
+| admin@example.com | admin |
+| ana@example.com | student |
+| bruno@example.com | student |
 
-## Learn More
+El login se hace pidiendo un magic link en `/login` y abriéndolo desde MailHog (http://localhost:8025).
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/app          # rutas (landing, login, courses, admin, api)
+src/lib          # db, auth, mailer, ordering, content (acceso a datos)
+src/components   # Header, MarkdownRenderer, FeedbackForm
+scripts/seed.ts  # seed de datos
+tests/           # unitarios + integración
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Documentación
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [AGENTS.md](AGENTS.md) — especificaciones técnicas.
+- [QUICKSTART.md](QUICKSTART.md) — guía de instalación y ejecución.
+- [RETROSPECTIVA.md](RETROSPECTIVA.md) — errores encontrados durante el desarrollo y sus soluciones.
