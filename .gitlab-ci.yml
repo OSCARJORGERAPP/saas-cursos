@@ -1,0 +1,8 @@
+# Templates de plataforma (modelo opt-in): los stages vienen de base.yml.
+# Esta app usa MongoDB.
+include:
+  - project: 'internos/templates-cicd'
+    ref: main
+    file:
+      - 'templates/provision-mongo.yml'
+      - 'templates/build-deploy.yml'
