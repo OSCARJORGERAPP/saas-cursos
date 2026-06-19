@@ -107,7 +107,11 @@ Autorización:
 - Reordenar (mover arriba/abajo o insertar entre) usando la lógica de §5.
 - Publicar/despublicar cursos.
 - Ver todo el feedback por recurso.
-- Editor de Markdown con vista previa.
+- **Editor de Markdown mejorado** con:
+  - Barra de herramientas con botones para insertar contenido (YouTube, Google Docs/Sheets/Slides, PDF, imágenes, código, citas, tablas)
+  - Editor y vista previa en tabs
+  - Inserción automática de sintaxis Markdown al hacer clic en botones
+  - Estado de guardado con spinner
 
 ### Student (`/courses`)
 - Lista de cursos publicados, numerados.
@@ -123,6 +127,11 @@ Autorización:
     - QR: `C:\Users\ojrap\Desktop\OmniSys.png` (guardar como `qr.png`)
 - Landing profesional: hero, propuesta de valor, listado de cursos destacados, CTA de login. Aplicar la skill `frontend-design`.
 - Diseño responsive, accesible (contraste, semántica, focus visible).
+- **Interfaz de administración**:
+  - Editor de recursos con barra de herramientas intuitiva
+  - Botones para insertar: YouTube (▶️), Google Docs (📄), Google Sheets (📊), Google Slides (🎬), PDF (📕), Imágenes (🖼️), Código (</>) , Citas (💬), Tablas (📋)
+  - Vista en tabs (Editor / Vista previa)
+  - El MarkdownRenderer embebe automáticamente los diferentes tipos de contenido en la vista del estudiante
 
 ## 9. Seed de datos (`scripts/seed.ts`, comando `npm run seed`)
 

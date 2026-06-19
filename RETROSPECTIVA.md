@@ -50,9 +50,24 @@ Registro de los problemas encontrados durante el desarrollo y cómo se resolvier
 
 **Lección**: correr lint temprano y a menudo; la mayoría de estos errores se autocorrigen.
 
+## 7. Mejora de la interfaz de edición de recursos (ResourceEditor)
+
+**Mejora implementada**: interfaz mejorada para insertar contenido multimedia en recursos (videos YouTube, Google Docs/Sheets/Slides, PDFs, imágenes, código, tablas).
+
+**Componentes creados**:
+- `ResourceEditor.tsx`: Client Component con:
+  - Barra de herramientas con 9 botones para insertar contenido
+  - Editor Markdown y vista previa en tabs
+  - Inserción automática de sintaxis Markdown al hacer clic
+- `markdown-helpers.ts`: funciones para generar sintaxis Markdown correcta
+- Extensión de `MarkdownRenderer.tsx`: soporte para embeber automáticamente Google Docs/Sheets/Slides, PDFs, etc.
+
+**Lección**: separar la lógica de generación de sintaxis Markdown en funciones reutilizables hace el código más mantenible y testeable. La inserción automática en el cursor mejora significativamente la UX.
+
 ## Decisiones de diseño que funcionaron bien
 
 - **Orden con huecos (múltiplos de 1000) + punto medio** para intercalar: simple, sin renumeraciones masivas, y la numeración visible (1, 1.1, 1.1.1) se calcula al renderizar.
 - **Server Actions para el CRUD de admin** en lugar de APIs REST: menos código, validación con zod en el servidor igual de estricta.
 - **Tests de integración contra MongoDB real** (base `saas-cursos-test`): detectan problemas reales del driver (tipos, índices, cascadas) que un mock ocultaría.
 - **`getDb()` como singleton global**: evita agotar conexiones con el hot-reload de Next.js.
+- **ResourceEditor con botones para insertar contenido**: interfaz intuitiva que reduce fricción al crear recursos con multimedia.
