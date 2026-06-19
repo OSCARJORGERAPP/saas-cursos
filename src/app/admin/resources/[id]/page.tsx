@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getDb } from "@/lib/db";
 import { getResourceById, listFeedback } from "@/lib/content";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import ResourceEditor from "@/components/ResourceEditor";
 import { updateResourceAction } from "../../actions";
 
 export const dynamic = "force-dynamic";
@@ -28,46 +29,19 @@ export default async function AdminResourcePage({
         ← Volver al curso
       </Link>
 
-      <div className="mt-4 grid gap-6 lg:grid-cols-2">
-        {/* Editor */}
-        <form
+      <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <ResourceEditor
+          resourceId={resource._id.toHexString()}
+          initialTitle={resource.title}
+          initialContent={resource.content}
           action={updateResourceAction}
-          className="space-y-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-        >
-          <input type="hidden" name="id" value={resource._id.toHexString()} />
-          <label className="block text-sm font-medium text-slate-700">
-            Título
-            <input
-              name="title"
-              required
-              defaultValue={resource.title}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none"
-            />
-          </label>
-          <label className="block text-sm font-medium text-slate-700">
-            Contenido (Markdown)
-            <textarea
-              name="content"
-              rows={20}
-              defaultValue={resource.content}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-4 py-2 font-mono text-sm focus:border-indigo-500 focus:outline-none"
-            />
-          </label>
-          <button className="rounded-lg bg-indigo-600 px-5 py-2 font-semibold text-white hover:bg-indigo-700">
-            Guardar (actualiza la vista previa)
-          </button>
-        </form>
-
-        {/* Vista previa */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 border-b border-slate-100 pb-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Vista previa
-          </h2>
-          <h1 className="text-2xl font-bold">{resource.title}</h1>
-          <div className="mt-4">
-            <MarkdownRenderer content={resource.content} />
-          </div>
-        </div>
+          preview={
+            <div>
+              <h1 className="text-2xl font-bold mb-4">{resource.title}</h1>
+              <MarkdownRenderer content={resource.content} />
+            </div>
+          }
+        />
       </div>
 
       {/* Feedback recibido */}
