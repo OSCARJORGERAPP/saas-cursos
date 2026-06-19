@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getDb } from "@/lib/db";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth-server";
 import { getCourseBySlug, getResourceById, listFeedback } from "@/lib/content";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import FeedbackForm from "@/components/FeedbackForm";

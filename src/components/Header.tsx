@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth-server";
 
 export default async function Header() {
   const user = await getCurrentUser();

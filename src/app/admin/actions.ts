@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { ObjectId } from "mongodb";
 import { z } from "zod";
 import { getDb } from "@/lib/db";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth-server";
 import {
   createCourse,
   createResource,

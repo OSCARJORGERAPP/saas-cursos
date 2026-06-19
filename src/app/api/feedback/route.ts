@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 import { z } from "zod";
 import { getDb } from "@/lib/db";
-import { AuthError, requireUser } from "@/lib/auth";
+import { AuthError, requireUser } from "@/lib/auth-server";
 import { addFeedback, getResourceById } from "@/lib/content";
 
 const bodySchema = z.object({

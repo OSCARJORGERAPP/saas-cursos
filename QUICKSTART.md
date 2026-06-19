@@ -44,7 +44,7 @@ Crea 3 cursos publicados con secciones, recursos (con videos de YouTube) y feedb
 
 | Email | Rol |
 |---|---|
-| admin@example.com | admin |
+|admin@example.com  | admin |
 | ana@example.com | student |
 | bruno@example.com | student |
 
