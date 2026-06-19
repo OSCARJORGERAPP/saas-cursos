@@ -28,10 +28,14 @@ SESSION_SECRET=dev-secret-cambiar-en-produccion
 ## 3. Arrancar MongoDB
 
 ```bash
+npm run mongo
+```
+
+Si MongoDB no está en la ruta esperada, usa:
+
+```bash
 # Windows (si está instalado como servicio):
 net start MongoDB
-# o
-mongod
 
 # macOS:
 brew services start mongodb-community

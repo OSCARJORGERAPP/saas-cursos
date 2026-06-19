@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "tsx scripts/seed.ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "mongo": "\"C:\\Program Files\\MongoDB\\Server\\8.3\\bin\\mongod.exe\""
   },
   "dependencies": {
     "mongodb": "^7.3.0",
