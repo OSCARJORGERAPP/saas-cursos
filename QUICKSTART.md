@@ -25,7 +25,27 @@ APP_URL=http://localhost:3000
 SESSION_SECRET=dev-secret-cambiar-en-produccion
 ```
 
-## 3. Levantar MailHog
+## 3. Arrancar MongoDB
+
+```bash
+# Windows (si está instalado como servicio):
+net start MongoDB
+# o
+mongod
+
+# macOS:
+brew services start mongodb-community
+
+# Linux (systemd):
+sudo systemctl start mongodb
+```
+
+Verificá que esté corriendo:
+```bash
+mongosh  # conecta a localhost:27017
+```
+
+## 4. Levantar MailHog
 
 ```bash
 mailhog
@@ -34,7 +54,7 @@ mailhog
 - SMTP: `localhost:1025`
 - Interfaz web: http://localhost:8025
 
-## 4. Cargar datos de ejemplo
+## 5. Cargar datos de ejemplo
 
 ```bash
 npm run seed
@@ -50,7 +70,7 @@ Crea 3 cursos publicados con secciones, recursos (con videos de YouTube) y feedb
 
 > ⚠️ El seed **borra** todos los datos previos de la base `saas-cursos`.
 
-## 5. Ejecutar la app
+## 6. Ejecutar la app
 
 ```bash
 npm run dev      # desarrollo, http://localhost:3000
@@ -58,7 +78,7 @@ npm run dev      # desarrollo, http://localhost:3000
 npm run build && npm start   # producción local
 ```
 
-## 6. Ingresar
+## 7. Ingresar
 
 1. Abrí http://localhost:3000/login
 2. Ingresá un email (p. ej. `admin@example.com`).
@@ -73,7 +93,7 @@ use("saas-cursos");
 db.users.updateOne({ email: "tu@email.com" }, { $set: { role: "admin" } });
 ```
 
-## 7. Tests
+## 8. Tests
 
 ```bash
 npm test
